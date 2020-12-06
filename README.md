@@ -1,22 +1,22 @@
-# README.md-GENERATOR
+# README.md-Generator
 
 ## Description
-Allows users to generate a README.md file from the command line.
+This application is designed to 
 
 ## Installation Instructions
-Allow the developer to quickly generate a professional README.md file for any project.
+run from comand line
 
 ## Usage
-non
+to create a high quality README.md file for any project
 
 ## Contribution Guidelines
-none
+Please enganage creator
 
 ## Testing Proceedures
 none
 
 ## Licenses Required
-Small
+MIT
 
 ## Questions
 If there are any questions realted to the application, the user is encouraged to vistit the creator's GitHub, at: https://github.com/adamhayward,
