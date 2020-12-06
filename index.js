@@ -1,9 +1,14 @@
+/* user must install inquirer by running npm i inquirer
+npm i inquirer*/
 const inquirer = require('inquirer');
+/* file system is includeded in inquirer package and 
+used to create the new markdown file; declaring use */
 const fs = require('fs');
+//  util is included in node, declaring use
 const util = require('util');
-
+// function created to run fs
 const writeFileAsync = util.promisify(fs.writeFile);
-
+// funtion created to prompt questions to the user
 const promptUser = () =>
     inquirer.prompt([
         {
@@ -42,10 +47,11 @@ const promptUser = () =>
             message: 'Please provide testing instructions:',
         },
         {
+            // list allows user to choose from provided options
             type: 'list',
             name: 'license',
-            message: 'Which licencese',
-            choices: ['BSD', 'MIT', 'CC', 'APACHE LICENSE'],
+            message: 'Which type of licencese is required?',
+            choices: ['This is an open source app', 'BSD', 'MIT', 'CC', 'APACHE LICENSE'],
         },
         {
             type: 'input',
@@ -58,8 +64,9 @@ const promptUser = () =>
             message: 'Please provide email address for users & developers to contact:',
         },
     ]);
-
+// function created to generate markdown file (README.md) 
 const generateMD = (answers) =>
+    // layout of the README.md being created
     `# ${answers.title}
 
 ## Description
@@ -81,12 +88,16 @@ ${answers.test}
 ${answers.license}
 
 ## Questions
-If there are any questions realted to the application, the user is encouraged to vistit the creator's GitHub, at: https://github.com/${answers.github},
+If there are any questions realted to the application, the user is 
+
+encouraged to vistit the creator's GitHub, at: https://github.com/${answers.github},
 
 or to contact the developer directy via email, at: ${answers.email}.
    `;
-
+// calling the promtUser funciton 
 promptUser()
-    .then((answers) => writeFileAsync('README.md', generateMD(answers)))
-    .then(() => console.log('Successfully created README.md file'))
+    // next the user's answers are written to a new markdown file using the generateMD function
+    .then((answers) => 
+        writeFileAsync(`${answers.title}(README).md`, generateMD(answers), console.log(`Successfully created README.md file for ${answers.title}`)))
+    // error thrown if not succuessful 
     .catch((err) => console.error(err));
